@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Clientes</title>
+    </h:head>
+    <h:body>
+        <h:form id="formInsertar">
+            <p:panelGrid columns="2">
+                
+                <p:outputLabel value="Correo electrónico"/>
+                <p:inputText value="#{clienteBean.cliente.correoElectronico}"/>
+                
+                <p:outputLabel value="Usuario"/>
+                <p:inputText value="#{clienteBean.cliente.nombreUsuario}"/>
+                
+                <p:outputLabel value="Contraseña"/>
+                <p:inputText value="#{clienteBean.cliente.contrasena}"/>
+                
+                <p:outputLabel value="Fecha de nacimiento"/>
+                <p:calendar id="popCalendar" value="#{clienteBean.cliente.fechaNacimiento}"  />
+                
+                <p:outputLabel value="Género"/>
+                <p:inputText value="#{clienteBean.cliente.genero}"/>
+                
+                <p:outputLabel value="Pais"/>
+                <p:inputText value="#{clienteBean.cliente.pais}"/>
+
+                <p:outputLabel value="Código postal"/>
+                <p:inputText value="#{clienteBean.cliente.codigoPostal}"/>
+                                
+                <p:commandButton actionListener="#{clienteBean.insertar()}" value="Registrar" update=":formMostrar" />
+            </p:panelGrid>
+        </h:form>
+        <h:form id="formMostrar" >
+            <p:dataTable var="clie" value="#{clienteBean.listaClientes}" rowsPerPageTemplate="10" emptyMessage="No hay registros"
+                         paginator="true" paginatorPosition="top" >
+                <p:column headerText="Id Cliente" >
+                    <h:outputText value="#{clie.idCliente}"/>
+                </p:column>
+                <p:column headerText="Tipo" >
+                    <h:outputText value="#{clie.tipo}"/>
+                </p:column>
+                <p:column headerText="Usuario" >
+                    <h:outputText value="#{clie.nombreUsuario}"/>
+                </p:column>
+                <p:column headerText="Correo electrónico" >
+                    <h:outputText value="#{clie.correoElectronico}"/>
+                </p:column>
+                <p:column headerText="Fecha nacimiento" >
+                    <h:outputText value="#{clie.fechaNacimiento}"/>
+                </p:column>
+                <p:column headerText="Género" >
+                    <h:outputText value="#{clie.genero}"/>
+                </p:column>
+                <p:column headerText="Fecha registro" >
+                    <h:outputText value="#{clie.fechaRegistro}"/>
+                </p:column>
+                <p:column headerText="Pais" >
+                    <h:outputText value="#{clie.pais}"/>
+                </p:column>
+                <p:column headerText="Código postal" >
+                    <h:outputText value="#{clie.codigoPostal}"/>
+                </p:column>
+                <p:column headerText="Status" >
+                    <h:outputText value="#{clie.status}"/>
+                </p:column>
+                <p:column headerText="Fecha baja" >
+                    <h:outputText value="#{clie.fechaBaja}"/>
+                </p:column>
+                <p:column headerText="Modificar" >
+                    <p:commandButton value="Modificar"  onclick="PF('dlgmodificar').show();" update=":formModificar">
+                        <f:setPropertyActionListener target="#{clienteBean.cliente}" value="#{clie}"/>
+                    </p:commandButton>
+                </p:column>
+            </p:dataTable>
+        </h:form>
+                <p:dialog id="dlg" header="Modificar" showEffect="explode" hideEffect="explode" 
+                    widgetVar="dlgmodificar" modal="true" resizable="false" minWidth="200">
+                    <h:form id="formModificar" >
+                        <p:panelGrid columns="2">
+                            <p:outputLabel value="Correo electrónico"/>
+                            <p:inputText value="#{clienteBean.cliente.correoElectronico}"/>
+                            <p:outputLabel value="Pais"/>
+                            <p:inputText value="#{clienteBean.cliente.pais}"/>
+                            <p:outputLabel value="Código postal"/>
+                            <p:inputText value="#{clienteBean.cliente.codigoPostal}"/>
+                        </p:panelGrid>
+                        <p:commandButton value="Modificar" update=":formMostrar" 
+                                         actionListener="#{clienteBean.modificar()}"
+                                         onclick="PF('dlgmodificar').hide();"/>
+                    </h:form>
+                </p:dialog>
+    </h:body>
+</html>

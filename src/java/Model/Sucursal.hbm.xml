@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 13/08/2017 06:13:13 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Model.Sucursal" table="sucursal" catalog="auxv2_0817" optimistic-lock="version">
+        <id name="idSucursal" type="java.lang.Integer">
+            <column name="idSucursal" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="empresa" class="Model.Empresa" fetch="select">
+            <column name="IdEmpresa" not-null="true" />
+        </many-to-one>
+        <property name="codigoSucursal" type="string">
+            <column name="CodigoSucursal" length="45" not-null="true">
+                <comment>Codigo que la empresa puede darle a su sucursal</comment>
+            </column>
+        </property>
+        <property name="sucursal" type="string">
+            <column name="Sucursal" length="45" not-null="true">
+                <comment>Nombre de la sucursal para referencia</comment>
+            </column>
+        </property>
+        <property name="tipo" type="string">
+            <column name="Tipo" length="1" not-null="true">
+                <comment>Tipo de sucursal A=Almacen S=Sucursal M=Matriz A=Administrativo O=Operativo</comment>
+            </column>
+        </property>
+        <property name="idPais" type="string">
+            <column name="IdPais" length="3" not-null="true" />
+        </property>
+        <property name="estado" type="string">
+            <column name="Estado" length="45" not-null="true" />
+        </property>
+        <property name="ciudad" type="string">
+            <column name="Ciudad" length="45" not-null="true" />
+        </property>
+        <property name="municipio" type="string">
+            <column name="Municipio" length="55" not-null="true" />
+        </property>
+        <property name="colonia" type="string">
+            <column name="Colonia" length="55" not-null="true" />
+        </property>
+        <property name="codigoPostal" type="string">
+            <column name="CodigoPostal" length="45" not-null="true" />
+        </property>
+        <property name="calle" type="string">
+            <column name="Calle" length="60" not-null="true" />
+        </property>
+        <property name="numeroExterior" type="string">
+            <column name="NumeroExterior" length="15" not-null="true" />
+        </property>
+        <property name="numeroInterior" type="string">
+            <column name="NumeroInterior" length="15" />
+        </property>
+        <property name="telefono1" type="long">
+            <column name="Telefono1" precision="10" scale="0" not-null="true" />
+        </property>
+        <property name="telefono2" type="java.lang.Long">
+            <column name="Telefono2" precision="10" scale="0" />
+        </property>
+        <property name="logotipo" type="binary">
+            <column name="Logotipo" />
+        </property>
+        <set name="empleados" table="empleado" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IdSucursal" not-null="true" />
+            </key>
+            <one-to-many class="Model.Empleado" />
+        </set>
+    </class>
+</hibernate-mapping>

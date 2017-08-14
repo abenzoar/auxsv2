@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 13/08/2017 06:13:13 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Model.Cliente" table="cliente" catalog="auxv2_0817" optimistic-lock="version">
+        <id name="idCliente" type="java.lang.Integer">
+            <column name="idCliente" />
+            <generator class="identity" />
+        </id>
+        <property name="tipo" type="string">
+            <column name="Tipo" length="1" not-null="true">
+                <comment>Tipo de cliente G=General (Se debe permiti una matriz 2 sucursales)</comment>
+            </column>
+        </property>
+        <property name="correoElectronico" type="string">
+            <column name="CorreoElectronico" length="80" not-null="true">
+                <comment>Correo electr&#243;nico del contacto. Debe verificarse y debe ser v&#225;lido.</comment>
+            </column>
+        </property>
+        <property name="nombreUsuario" type="string">
+            <column name="NombreUsuario" length="20" not-null="true">
+                <comment>Nombre de usuario para administrar su cuenta</comment>
+            </column>
+        </property>
+        <property name="contrasena" type="string">
+            <column name="Contrasena" length="250" not-null="true" />
+        </property>
+        <property name="fechaNacimiento" type="date">
+            <column name="FechaNacimiento" length="10" not-null="true" >
+                <comment>Fecha de nacimiento para validar edad</comment>
+            </column>
+        </property>
+        <property name="genero" type="string">
+            <column name="Genero" length="1" not-null="true">
+                <comment>Genero de la cuenta</comment>
+            </column>
+        </property>
+        <property name="fechaRegistro" type="timestamp">
+            <column name="FechaRegistro" length="19" not-null="true">
+                <comment>Fecha de creaci&#243;n de la cuenta</comment>
+            </column>
+        </property>
+        <property name="pais" type="string">
+            <column name="Pais" length="3" not-null="true" />
+        </property>
+        <property name="codigoPostal" type="int">
+            <column name="CodigoPostal" not-null="true" />
+        </property>
+        <property name="status" type="string">
+            <column name="Status" length="1" />
+        </property>
+        <property name="fechaBaja" type="timestamp">
+            <column name="FechaBaja" length="19" />
+        </property>
+        <set name="empresas" table="empresa" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IdCliente" />
+            </key>
+            <one-to-many class="Model.Empresa" />
+        </set>
+    </class>
+</hibernate-mapping>

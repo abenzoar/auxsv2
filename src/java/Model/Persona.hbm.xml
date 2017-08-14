@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 13/08/2017 06:13:13 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Model.Persona" table="persona" catalog="auxv2_0817" optimistic-lock="version">
+        <id name="rfcPersona" type="string">
+            <column name="RfcPersona" length="13" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="pais" class="Model.Pais" fetch="select">
+            <column name="IdPais" length="3" />
+        </many-to-one>
+        <property name="nombre" type="string">
+            <column name="Nombre" length="45" not-null="true" />
+        </property>
+        <property name="apellidoPaterno" type="string">
+            <column name="ApellidoPaterno" length="45" not-null="true" />
+        </property>
+        <property name="apellidoMaterno" type="string">
+            <column name="ApellidoMaterno" length="45" not-null="true" />
+        </property>
+        <property name="correoElectronico" type="string">
+            <column name="CorreoElectronico" length="90" not-null="true" />
+        </property>
+        <property name="fechaNacimiento" type="date">
+            <column name="FechaNacimiento" length="10" not-null="true" />
+        </property>
+        <property name="estado" type="string">
+            <column name="Estado" length="45" />
+        </property>
+        <property name="municipio" type="string">
+            <column name="Municipio" length="45" />
+        </property>
+        <property name="localidad" type="string">
+            <column name="Localidad" length="45" />
+        </property>
+        <property name="colonia" type="string">
+            <column name="Colonia" length="45" />
+        </property>
+        <property name="codigoPostal" type="java.lang.Integer">
+            <column name="CodigoPostal" />
+        </property>
+        <property name="telefono1" type="long">
+            <column name="Telefono1" precision="10" scale="0" not-null="true" />
+        </property>
+        <property name="telefono2" type="java.lang.Long">
+            <column name="Telefono2" precision="10" scale="0" />
+        </property>
+        <property name="alias" type="string">
+            <column name="Alias" length="45" not-null="true" />
+        </property>
+        <property name="genero" type="string">
+            <column name="Genero" length="1" not-null="true" />
+        </property>
+        <property name="estadoCivil" type="string">
+            <column name="EstadoCivil" length="1">
+                <comment>S=Soltero C=Casado</comment>
+            </column>
+        </property>
+        <property name="nacionalidad" type="string">
+            <column name="Nacionalidad" length="1">
+                <comment>M=Mexicano E=Extranejro</comment>
+            </column>
+        </property>
+        <property name="numeroSeguroSocial" type="string">
+            <column name="NumeroSeguroSocial" length="45" />
+        </property>
+        <property name="numeroIne" type="string">
+            <column name="NumeroIne" length="45" />
+        </property>
+        <property name="foto" type="binary">
+            <column name="Foto" />
+        </property>
+        <set name="empleados" table="empleado" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="RfcPersona" length="13" not-null="true" />
+            </key>
+            <one-to-many class="Model.Empleado" />
+        </set>
+        <set name="empresas" table="empresa" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="RfcPersona" length="13" not-null="true" />
+            </key>
+            <one-to-many class="Model.Empresa" />
+        </set>
+    </class>
+</hibernate-mapping>

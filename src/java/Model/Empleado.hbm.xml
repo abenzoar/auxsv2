@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 13/08/2017 06:13:13 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Model.Empleado" table="empleado" catalog="auxv2_0817" optimistic-lock="version">
+        <id name="idEmpleado" type="java.lang.Integer">
+            <column name="idEmpleado" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="empleado" class="Model.Empleado" fetch="select">
+            <column name="Supervisor" />
+        </many-to-one>
+        <many-to-one name="empresa" class="Model.Empresa" fetch="select">
+            <column name="IdEmpresa" not-null="true" />
+        </many-to-one>
+        <many-to-one name="persona" class="Model.Persona" fetch="select">
+            <column name="RfcPersona" length="13" not-null="true" />
+        </many-to-one>
+        <many-to-one name="rol" class="Model.Rol" update="false" insert="false" fetch="select">
+            <column name="IdRol" not-null="true" />
+            <column name="IdEmpresa" not-null="true" />
+        </many-to-one>
+        <many-to-one name="sucursal" class="Model.Sucursal" fetch="select">
+            <column name="IdSucursal" not-null="true" />
+        </many-to-one>
+        <property name="fechaRegistro" type="timestamp">
+            <column name="FechaRegistro" length="19" not-null="true" />
+        </property>
+        <property name="fechaIngreso" type="date">
+            <column name="FechaIngreso" length="10" not-null="true" />
+        </property>
+        <property name="fechaBaja" type="date">
+            <column name="FechaBaja" length="10" />
+        </property>
+        <property name="claveEmpleado" type="string">
+            <column name="ClaveEmpleado" length="45" />
+        </property>
+        <property name="correoElectronico" type="string">
+            <column name="CorreoElectronico" length="80" />
+        </property>
+        <property name="telefono1" type="java.lang.Integer">
+            <column name="Telefono1" />
+        </property>
+        <property name="telefono2" type="java.lang.Integer">
+            <column name="Telefono2" />
+        </property>
+        <property name="status" type="string">
+            <column name="Status" length="1" not-null="true">
+                <comment>A=Activo I=Inactivo</comment>
+            </column>
+        </property>
+        <property name="foto" type="binary">
+            <column name="Foto" />
+        </property>
+        <property name="contrasena" type="string">
+            <column name="Contrasena" length="200" />
+        </property>
+        <set name="empleados" table="empleado" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Supervisor" />
+            </key>
+            <one-to-many class="Model.Empleado" />
+        </set>
+    </class>
+</hibernate-mapping>
