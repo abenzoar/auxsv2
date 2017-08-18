@@ -48,13 +48,13 @@ Contributor(s):
     <property name="hibernate.connection.password">9807288</property>
     <property name="hibernate.show_sql">true</property>
     <property name="hibernate.current_session_context_class">thread</property>
-    <mapping resource="Model/Pais.hbm.xml"/>
-    <mapping resource="Model/Empresa.hbm.xml"/>
     <mapping resource="Model/Cliente.hbm.xml"/>
-    <mapping resource="Model/Sucursal.hbm.xml"/>
+    <mapping resource="Model/ClienteView.hbm.xml"/>
     <mapping resource="Model/Empleado.hbm.xml"/>
+    <mapping resource="Model/Empresa.hbm.xml"/>
+    <mapping resource="Model/Pais.hbm.xml"/>
     <mapping resource="Model/Persona.hbm.xml"/>
     <mapping resource="Model/Rol.hbm.xml"/>
-    <mapping resource="Model/ClienteView.hbm.xml"/>
+    <mapping resource="Model/Sucursal.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

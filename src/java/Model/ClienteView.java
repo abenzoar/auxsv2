@@ -49,7 +49,7 @@ public class ClienteView implements java.io.Serializable {
     }
    
 
-        public Integer getIdCliente() {
+     public Integer getIdCliente() {
         return this.idCliente;
     }
     

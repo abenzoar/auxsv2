@@ -7,11 +7,14 @@ package Bean;
 
 import Dao.ClienteDao;
 import Dao.ClienteDaoImplement;
+import Dao.PaisDao;
+import Dao.PaisDaoImplement;
 import java.io.Serializable;
 import javax.annotation.ManagedBean;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import Model.Cliente;
+import Model.Pais;
 import java.util.List;
 import java.util.Date;
 
@@ -23,13 +26,12 @@ import java.util.Date;
 @Named(value = "clienteBean")
 @SessionScoped
 public class clienteBean implements Serializable {
-    //Variables a utilizar
     //Variable para la entidad Cliente
-    private Cliente cliente;
-    
+    private Cliente cliente;    
     //Variable para la lista de Clientes
     private List<Cliente> listaClientes;
-    
+    //Variable para la lista de paises
+    private List<Pais> listaPaises;
     
     /**
      * Instancia de CLiente Bean
@@ -55,13 +57,16 @@ public class clienteBean implements Serializable {
         clienteDao.insertarCliente(cliente);
         cliente = new Cliente();
         getListaClientes();
+        cliente = new Cliente();
     }
     
     //Método para modificar el registro
     public void modificar(){
         ClienteDao clienteDao = new ClienteDaoImplement();
         clienteDao.modificarCliente(cliente);
+        System.out.println("Cliente BEAN" + cliente);
         cliente = new Cliente();        
+        getListaClientes();
     }
     
     
@@ -87,6 +92,18 @@ public class clienteBean implements Serializable {
     public void setListaClientes(List<Cliente> listaClientes) {
         this.listaClientes = listaClientes;
     }
+
+    public List<Pais> getListaPaises() {
+        PaisDao paisDao = new PaisDaoImplement();
+        listaPaises = paisDao.listaPais();
+        return listaPaises;
+    }
+
+    public void setListaPaises(List<Pais> listaPaises) {
+        this.listaPaises = listaPaises;
+    }
+
+
     
     //</editor-fold>
     

@@ -41,11 +41,13 @@ Contributor(s):
 -->
 <hibernate-reverse-engineering>
   <schema-selection match-catalog="auxv2_0817"/>
-  <table-filter match-name="pais"/>
-  <table-filter match-name="empleado"/>
-  <table-filter match-name="sucursal"/>
-  <table-filter match-name="rol"/>
+  <table-filter match-name="catgenero"/>
   <table-filter match-name="cliente"/>
+  <table-filter match-name="clienteView"/>
+  <table-filter match-name="empleado"/>
   <table-filter match-name="empresa"/>
+  <table-filter match-name="pais"/>
   <table-filter match-name="persona"/>
+  <table-filter match-name="rol"/>
+  <table-filter match-name="sucursal"/>
 </hibernate-reverse-engineering>

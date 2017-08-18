@@ -6,6 +6,7 @@
 package Dao;
 
 import Model.Cliente;
+import Model.ClienteView;
 import Persistencia.HibernateUtil;
 import java.util.List;
 import org.hibernate.HibernateException;
@@ -29,7 +30,7 @@ public class ClienteDaoImplement implements ClienteDao {
             
         }
         catch (HibernateException e){
-            System.out.println(e.getMessage());
+            //System.out.println(e.getMessage());
         }
         finally {
             if (session != null) {
@@ -48,7 +49,7 @@ public class ClienteDaoImplement implements ClienteDao {
             session.save(cliente);
             session.getTransaction().commit();
         } catch (HibernateException e) {
-            System.out.println(e.getMessage());
+            //System.out.println(e.getMessage());
             session.getTransaction().rollback();
         } finally {
             if (session != null) {
@@ -64,9 +65,10 @@ public class ClienteDaoImplement implements ClienteDao {
             session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
             session.update(cliente);
+            //System.out.println("Cliente " + cliente);
             session.getTransaction().commit();
         } catch (HibernateException e) {
-            System.out.println(e.getMessage());
+            //System.out.println(e.getMessage());
             session.getTransaction().rollback();
         } finally {
             if (session != null) {

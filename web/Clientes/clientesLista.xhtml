@@ -27,7 +27,11 @@
                 <p:inputText value="#{clienteBean.cliente.genero}"/>
                 
                 <p:outputLabel value="Pais"/>
-                <p:inputText value="#{clienteBean.cliente.pais}"/>
+                
+                <p:selectOneMenu value="#{clienteBean.cliente.pais}" >
+                    <f:selectItems var="pais" value="#{clienteBean.listaPaises}" itemLabel="#{pais.pais}" 
+                                   itemValue="#{pais.idPais}" />                               
+                </p:selectOneMenu>
 
                 <p:outputLabel value="Código postal"/>
                 <p:inputText value="#{clienteBean.cliente.codigoPostal}"/>
@@ -39,6 +43,7 @@
             <p:dataTable var="clie" value="#{clienteBean.listaClientes}" rowsPerPageTemplate="10" emptyMessage="No hay registros"
                          paginator="true" paginatorPosition="top" >
                 <p:column headerText="Id Cliente" >
+                    <h:outputText value="#{clie.idCliente}"/>
                     <h:outputText value="#{clie.idCliente}"/>
                 </p:column>
                 <p:column headerText="Tipo" >
