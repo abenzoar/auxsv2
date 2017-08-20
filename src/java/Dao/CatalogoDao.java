@@ -6,13 +6,15 @@
 package Dao;
 
 import Model.Pais;
+import Model.Catgenero;
 import java.util.List;
 
 /**
  *
  * @author Abenzoar
  */
-public interface PaisDao {
-        public List<Pais> listaPais();
-
+public interface CatalogoDao {
+        public List<Pais> listaPais();   
+        public List<Catgenero> listaGenero();
+                
 }

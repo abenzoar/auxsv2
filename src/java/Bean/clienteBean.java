@@ -7,15 +7,17 @@ package Bean;
 
 import Dao.ClienteDao;
 import Dao.ClienteDaoImplement;
-import Dao.PaisDao;
-import Dao.PaisDaoImplement;
+import Dao.CatalogoDao;
+import Dao.CatalogoDaoImplement;
 import java.io.Serializable;
 import javax.annotation.ManagedBean;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import Model.Cliente;
 import Model.Pais;
+import Model.Catgenero;
 import java.util.List;
+
 import java.util.Date;
 
 /**
@@ -32,16 +34,15 @@ public class clienteBean implements Serializable {
     private List<Cliente> listaClientes;
     //Variable para la lista de paises
     private List<Pais> listaPaises;
+    //Variable para la lista de paises
+    private List<Catgenero> listaGenero;
     
     /**
      * Instancia de CLiente Bean
      */
     public clienteBean() {
-        
         //Se inicializa la variable de la entidad Cliente
         cliente = new Cliente();
-        
-      
     }
 
     //<editor-fold desc="Métodos Insertar / Editar">
@@ -94,7 +95,7 @@ public class clienteBean implements Serializable {
     }
 
     public List<Pais> getListaPaises() {
-        PaisDao paisDao = new PaisDaoImplement();
+        CatalogoDao paisDao = new CatalogoDaoImplement();         
         listaPaises = paisDao.listaPais();
         return listaPaises;
     }
@@ -103,6 +104,15 @@ public class clienteBean implements Serializable {
         this.listaPaises = listaPaises;
     }
 
+    public List<Catgenero> getListaGenero() {
+        CatalogoDao generoDao = new CatalogoDaoImplement();         
+        listaGenero = generoDao.listaGenero();
+        return listaGenero;
+    }
+
+    public void setListaGenero(List<Catgenero> listaGenero) {
+        this.listaGenero = listaGenero;
+    }
 
     
     //</editor-fold>

@@ -48,6 +48,7 @@ Contributor(s):
     <property name="hibernate.connection.password">9807288</property>
     <property name="hibernate.show_sql">true</property>
     <property name="hibernate.current_session_context_class">thread</property>
+    <mapping resource="Model/Catgenero.hbm.xml"/>
     <mapping resource="Model/Cliente.hbm.xml"/>
     <mapping resource="Model/ClienteView.hbm.xml"/>
     <mapping resource="Model/Empleado.hbm.xml"/>

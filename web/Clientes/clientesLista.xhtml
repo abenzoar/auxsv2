@@ -24,10 +24,12 @@
                 <p:calendar id="popCalendar" value="#{clienteBean.cliente.fechaNacimiento}"  />
                 
                 <p:outputLabel value="Género"/>
-                <p:inputText value="#{clienteBean.cliente.genero}"/>
+                <p:selectOneMenu value="#{clienteBean.cliente.genero}" >
+                    <f:selectItems var="genero" value="#{clienteBean.listaGenero}" itemLabel="#{genero.genero}" 
+                                   itemValue="#{genero.idGenero}" />                               
+                </p:selectOneMenu>
                 
-                <p:outputLabel value="Pais"/>
-                
+                <p:outputLabel value="Pais"/>                
                 <p:selectOneMenu value="#{clienteBean.cliente.pais}" >
                     <f:selectItems var="pais" value="#{clienteBean.listaPaises}" itemLabel="#{pais.pais}" 
                                    itemValue="#{pais.idPais}" />                               
@@ -43,7 +45,6 @@
             <p:dataTable var="clie" value="#{clienteBean.listaClientes}" rowsPerPageTemplate="10" emptyMessage="No hay registros"
                          paginator="true" paginatorPosition="top" >
                 <p:column headerText="Id Cliente" >
-                    <h:outputText value="#{clie.idCliente}"/>
                     <h:outputText value="#{clie.idCliente}"/>
                 </p:column>
                 <p:column headerText="Tipo" >

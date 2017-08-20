@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 13/08/2017 06:13:13 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated 17/08/2017 09:01:23 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="Model.Persona" table="persona" catalog="auxv2_0817" optimistic-lock="version">
+    <class name="Model.Persona" table="persona" catalog="auxv2_0817">
         <id name="rfcPersona" type="string">
             <column name="RfcPersona" length="13" />
-            <generator class="assigned" />
+            <generator class="assigned"></generator>
         </id>
         <many-to-one name="pais" class="Model.Pais" fetch="select">
             <column name="IdPais" length="3" />

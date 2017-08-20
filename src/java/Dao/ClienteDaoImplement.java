@@ -25,7 +25,8 @@ public class ClienteDaoImplement implements ClienteDao {
         List<Cliente> lista = null; 
         try {
             session = HibernateUtil.getSessionFactory().openSession();
-            Query query = session.createQuery("from Cliente u");
+            Query query = session.createQuery("from Cliente as cliente");            
+            //Query query = session.createQuery("from Cliente as cliente, Catgenero as genero, Pais as pais WHERE cliente.genero = genero.idGenero AND cliente.pais = pais.idPais");
             lista = (List<Cliente>) query.list();
             
         }
